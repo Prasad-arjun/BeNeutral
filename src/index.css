@@ -1,13 +1,31 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* font of a navbar   */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+.navHeadingFont {
+  font-family: "Inter", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* navbar animation  */
+
+.nav-link::before {
+  content: "";
+  background-color: #34a853;
+  width: 70%;
+  height:0.10rem;
+  position: absolute;
+  left: 1.3rem;
+  bottom: 1rem;
+  transform: scaleX(0);
+  border-radius: 10rem;
+  transform-origin: bottom right;
+  transition: transform 450ms;
+}
+.nav-link:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
