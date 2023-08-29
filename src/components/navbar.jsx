@@ -27,8 +27,8 @@ const navItems = [
 
 const Navabr = () => {
   return (
-    <div className="navHeadingFont h-16 w-[100vw] flex justify-center items-center  ">
-      <div className="w-[95%] flex justify-between items-center  pt-12  ">
+    <div className="navHeadingFont h-[5rem] w-[100vw] flex justify-center items-center  ">
+      <div className="w-[95%] flex justify-between items-center ">
         <a href="#" className="flex justify-center items-center">
           <img src={Logo} className="h-14" />
           <h1 className="p-2 m-2 text-xl text-[#34a853] font-medium">
@@ -36,17 +36,19 @@ const Navabr = () => {
           </h1>
         </a>
         <div className=" flex justify-evenly items-center h-auto w-[55%] text-gray-900 font-medium text-lg  ">
-          <div className="">
+       
             {navItems.map((value, index) => (
+              <div className="relative">
               <a
                 href={value.url}
-                className="nav-link p-5 m-1 relative"
+                className="nav-link "
                 key={index}
               >
                 {value.name}
               </a>
+              </div>
             ))}
-          </div>
+          
           <button className="bg-[#34a853] text-white h-10 w-24 rounded-md hover:-translate-y-2 transition duration-300 ease-linear">
             Sign in
           </button>
