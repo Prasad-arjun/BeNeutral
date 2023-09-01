@@ -3,8 +3,10 @@ import "./index.css";
 import Navabr from "./components/navbar";
 import LandingPage from "./components/landingPage";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
-import Learn from "./components/learn";
 import HowItWorks from "./components/howItWorks";
+import Mission from "./components/mission";
+import Learn from "./components/learn";
+import Events from "./components/events";
 
 function App() {
   const containerRef = useRef(null);
@@ -24,7 +26,9 @@ function App() {
         <Navabr />
         <LandingPage />
         <HowItWorks />
+        <Mission />
         <Learn />
+        <Events />
       </main>
     </LocomotiveScrollProvider>
   );

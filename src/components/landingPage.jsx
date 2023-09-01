@@ -10,7 +10,7 @@ const LandingPage = () => {
       <div className="w-[95%] h-auto flex absolute">
         <div className="w-[55%] h-full justify-center items-start flex flex-col relative z-[1] top-[10rem] left-[3rem]  ">
           <div className="w-[100%] relative bottom-12">
-            <h1 className="text-5xl font-semibold tracking-wide text-left relative">
+            <h1 className="text-5xl headColor font-semibold tracking-wide text-left relative">
               Reducing
               <img
                 src={footStep}
@@ -30,12 +30,12 @@ const LandingPage = () => {
             </h1>
           </div>
           <div className="w-[100%] mt-4 relative bottom-10">
-            <h2 className="text-xl text-left ">
+            <h2 className="text-xl text-left  paraColor">
               Qunatify your impact with personalizes carbon footprint assesment
               embrace <br /> eco-challeneges for{" "}
               <a className="underline underline-offset-4 decoration-[#34a853]">
                 green coins
-              </a>
+              </a>{" "}
               and join a thriving community united for change
             </h2>
           </div>
@@ -51,7 +51,7 @@ const LandingPage = () => {
         <div className="w-[45%] flex justify-center  items-center h-full relative earthHero  ">
           <img
             src={Earth}
-            className=" h-[90%] w-[90%] relative z-[-1] left-8 bottom-6 earthIllu  "
+            className=" h-[90%] w-[90%] relative z-[-1] left-8 bottom-6 earthIllu"
           />
         </div>
       </div>
