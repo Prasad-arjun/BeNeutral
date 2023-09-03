@@ -6,7 +6,7 @@ import Earth from "../resource/earthIllustration.svg";
 
 const LandingPage = () => {
   return (
-    <div className=" w-full h-[100vh] flex justify-center items-center HeadingFont overflow-hidden">
+    <div className=" w-full h-[100vh] flex justify-center items-center HeadingFont overflow-hidden" id="/">
       <div className="w-[95%] h-auto flex absolute">
         <div className="w-[55%] h-full justify-center items-start flex flex-col relative z-[1] top-[10rem] left-[3rem]  ">
           <div className="w-[100%] relative bottom-12">

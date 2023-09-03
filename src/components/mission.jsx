@@ -1,7 +1,10 @@
 import "../index.css";
 const Mission = () => {
   return (
-    <div className="h-[100vh] w-full  flex justify-center items-center headColor HeadingFont">
+    <div
+      className="h-[100vh] w-full  flex justify-center items-center headColor HeadingFont"
+      id="Mission"
+    >
       <div className="h-[95%] w-[95%]">
         <div className="p-4 pb-0">
           <h1 className="text-4xl font-semibold tracking-wide text-left  headColor HeadingFont">
@@ -16,7 +19,8 @@ const Mission = () => {
           </h1>
           <h1 className="headColor">Timeline of Carbon Emissions Impact</h1>
         </div>
-        <div className="w-full h-[70%]  flex justify-center items-center">
+        <div
+          className="w-full h-[70%]  flex justify-center items-center" data-aos="fade-down" >
           <div className="w-[98%] h-[98%]  flex flex-col justify-center items-center">
             <div className="flex justify-around items-center w-[100%] h-[25%] relative bottom-6">
               <p className="w-[15%] h-[100%] text-left flex justify-center items-center border-2 border-dotted border-blue-500  text-blue-500 relative p-2  ">

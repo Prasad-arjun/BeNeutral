@@ -11,13 +11,11 @@
 }
 
 /* font color heading */
-.headColor
-{
+.headColor {
   color: #173c35;
 }
-.paraColor
-{
-  color:#5c6475
+.paraColor {
+  color: #5c6475;
 }
 
 /* navbar animation  */
@@ -26,9 +24,9 @@
   content: "";
   background-color: #34a853;
   width: 100%;
-  height:0.10rem;
+  height: 0.1rem;
   position: absolute;
-  left:0rem;
+  left: 0rem;
   bottom: 0rem;
   transform: scaleX(0);
   border-radius: 10rem;
@@ -45,18 +43,16 @@
   border: 4px solid;
   border-color: #34a853;
   width: 90%;
-  height:94%;
+  height: 94%;
   position: absolute;
-  left:0.22rem;
+  left: 0.22rem;
   top: 0.4rem;
   bottom: 0rem;
   border-radius: 100%;
- 
 }
 
 /* earth Illustration */
-.earthIllu
-{
+.earthIllu {
   animation: spin 20s linear infinite;
 }
 
@@ -69,36 +65,38 @@
   }
 }
 
-
-
-
-
 /* locomotive scrool */
 html.has-scroll-smooth {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 html.has-scroll-dragging {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+}
 
 .has-scroll-smooth body {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .has-scroll-smooth [data-scroll-container] {
-  min-height: 100vh; }
+  min-height: 100vh;
+}
 
 [data-scroll-direction="horizontal"] [data-scroll-container] {
   height: 100vh;
   display: inline-block;
-  white-space: nowrap; }
+  white-space: nowrap;
+}
 
 [data-scroll-direction="horizontal"] [data-scroll-section] {
   display: inline-block;
   vertical-align: top;
   white-space: nowrap;
-  height: 100%; }
+  height: 100%;
+}
 
 .c-scrollbar {
   position: absolute;
@@ -108,19 +106,26 @@ html.has-scroll-dragging {
   height: 100%;
   transform-origin: center right;
   transition: transform 0.3s, opacity 0.3s;
-  opacity: 0; }
-  .c-scrollbar:hover {
-    transform: scaleX(1.45); }
-  .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
-    opacity: 1; }
-  [data-scroll-direction="horizontal"] .c-scrollbar {
-    width: 100%;
-    height: 10px;
-    top: auto;
-    bottom: 0;
-    transform: scaleY(1); }
-    [data-scroll-direction="horizontal"] .c-scrollbar:hover {
-      transform: scaleY(1.3); }
+  opacity: 0;
+}
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar {
+  width: 100%;
+  height: 10px;
+  top: auto;
+  bottom: 0;
+  transform: scaleY(1);
+}
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+  transform: scaleY(1.3);
+}
 
 .c-scrollbar_thumb {
   position: absolute;
@@ -132,13 +137,35 @@ html.has-scroll-dragging {
   border-radius: 10px;
   margin: 2px;
   cursor: -webkit-grab;
-  cursor: grab; }
-  .has-scroll-dragging .c-scrollbar_thumb {
-    cursor: -webkit-grabbing;
-    cursor: grabbing; }
-  [data-scroll-direction="horizontal"] .c-scrollbar_thumb {
-    right: auto;
-    bottom: 0; }
+  cursor: grab;
+}
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+  right: auto;
+  bottom: 0;
+}
+
+/* navbar */
+.nav-container {
+  background-color: transparent;
+  transition: background-color 0.5s ease-in-out;
+}
+
+/* Sticky Navbar */
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: white; /* Change the background color as needed */
+  opacity: 85%;
+  transition: all 0.5s ease-in-out;
+}
 
 
 
+/* Rest of your CSS remains the same as in the previous answer */

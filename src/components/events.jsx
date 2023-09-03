@@ -4,7 +4,7 @@ import OlderPeopleEvents from "../resource/event1.jpg";
 import comunistEvents from "../resource/event2.jpg";
 const Events = () => {
   return (
-    <div className="h-[160vh] w-full  flex justify-center items-center headColor HeadingFont">
+    <div className="h-[160vh] w-full  flex justify-center items-center headColor HeadingFont" id="Events">
       <div className="h-[98%] w-[95%] ">
         <div className="w-full h-[30%]  flex p-2 justify-start items-start">
           <div className=" relative top-12">
@@ -30,7 +30,7 @@ const Events = () => {
             </p>
           </div>
           <div className="h-[70%] w-full relative top-12 left-16 flex flex-col justify-center items-center ">
-            <div className="h-[50%] w-[100%] flex items-center justify-center group">
+            <div className="h-[50%] w-[100%] flex items-center justify-center group" data-aos="fade-right"  data-aos-offset="50">
               <img
                 src={comunistEvents}
                 className="h-[100%] w-[50%] rounded-md group-hover:scale-105 hover:transition-all duration-500 hover:ease-linear"
@@ -55,7 +55,7 @@ const Events = () => {
                 </button>
               </div>
             </div>
-            <div className="h-[50%] flex relative mt-8 group">
+            <div className="h-[50%] flex relative mt-8 group" data-aos="fade-left">
               <img
                 src={OlderPeopleEvents}
                 className="h-[100%] w-[50%] rounded-md group-hover:scale-105 hover:transition-all duration-500 hover:ease-linear"

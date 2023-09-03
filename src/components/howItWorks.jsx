@@ -15,7 +15,7 @@ const HowItWorks = () => {
         </h1>
         <p></p>
         <div className="w-[100%] h-[90%] flex flex-col justify-center items-center paraColor">
-          <div className="flex ">
+          <div className="flex " data-aos="fade-down">
             <div className="h-[40vh] w-[30vw]  flex flex-col justify-center relative   items-start">
               <img src={profile} className="h-8  " alt="profileIcon" />
               <h1 className="text-lg headColor   font-medium mt-2 mb-2 ">
@@ -55,7 +55,7 @@ const HowItWorks = () => {
               </div>
             </div>
           </div>
-          <div className="flex">
+          <div className="flex" data-aos="fade-down">
             <div className="h-[40vh] w-[30vw] ">
               <div className="h-[40vh] w-[30vw]-100 flex flex-col justify-center items-start">
                 <img src={coins} className="h-8" alt="profileIcon" />

@@ -8,7 +8,7 @@ import ozoneLayer from "../resource/ozonelayer.jpg";
 import "../index.css";
 const Learn = () => {
   return (
-    <div className=" h-[150vh] w-full flex flex-col  justify-center items-center HeadingFont headColor p-4">
+    <div className=" h-[150vh] w-full flex flex-col  justify-center items-center HeadingFont headColor p-4" id="Learn">
       <div className="h-[30%] w-[95%] flex  mt-4  justify-center ">
         <div className="h-[100%] w-[100%]   flex flex-col justify-center ">
           <h1 className="text-4xl font-semibold  tracking-wide mb-4">Learn</h1>
@@ -33,8 +33,8 @@ const Learn = () => {
         <h1 className=" text-[#34a853] text-2xl font-medium tracking-wide text-left HeadingFont relative right-[37rem] bottom-10">
           Courses to explore :
         </h1>
-        <div className="w-[95%] h-[90%] bg flex flex-col justify-center items-center mt-2  ">
-          <div className="w-[100%] h-[50%] flex p-2">
+        <div className="w-[95%] h-[90%] bg flex flex-col justify-center items-center mt-2">
+          <div className="w-[100%] h-[50%] flex p-2" data-aos="fade-down">
             <div className="w-[33.33%] h-[100%] bg-green-50 rounded-lg mr-2 flex group">
               <img
                 src={enviorment}
@@ -103,7 +103,7 @@ const Learn = () => {
               </div>
             </div>
           </div>
-          <div className="w-[100%] h-[50%]  flex p-2">
+          <div className="w-[100%] h-[50%]  flex p-2" data-aos="fade-up">
             <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg   flex group">
               <img
                 src={humans}
