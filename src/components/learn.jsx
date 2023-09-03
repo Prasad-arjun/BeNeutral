@@ -24,7 +24,7 @@ const Learn = () => {
           </p>
         </div>
         <img
-          src={sideEarthImage} 
+          src={sideEarthImage}
           className="h-[100%] w-[50%]"
           alt="mountains image"
         />
@@ -35,10 +35,10 @@ const Learn = () => {
         </h1>
         <div className="w-[95%] h-[90%] bg flex flex-col justify-center items-center mt-2  ">
           <div className="w-[100%] h-[50%] flex p-2">
-            <div className="w-[33.33%] h-[100%] bg-green-50 rounded-lg mr-2 flex">
+            <div className="w-[33.33%] h-[100%] bg-green-50 rounded-lg mr-2 flex group">
               <img
                 src={enviorment}
-                className="h-[100%] rounded-l-lg"
+                className="h-[100%] rounded-l-lg group-hover:scale-105 group-hover:rounded-lg hover:transition-all duration-500 hover:ease-linear"
                 alt="enviorement"
               />
               <div className="p-2 flex flex-col justify-start">
@@ -53,15 +53,15 @@ const Learn = () => {
                   biodiversity changes and disruptions in ecological
                   interactions.
                 </p>
-                <button className="bg-[#34a853] text-white h-10 w-36 rounded-lg relative top-6 hover:bg-white hover:text-[#34a853] hover:border-2 hover:border-[#34a853] hover:scale-95 hover:transition-all duration-500 hover:ease-linear">
+                <button className="bg-[#34a853] text-white h-10 w-36 rounded-lg relative top-6  hover:bg-white hover:text-[#34a853] hover:border-2 hover:border-[#34a853] hover:scale-95 hover:transition-all duration-500 hover:ease-linear">
                   Read
                 </button>
               </div>
             </div>
-            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg  flex">
+            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg  flex group">
               <img
-                src={climateChange} 
-                className="h-[100%] rounded-l-lg"
+                src={climateChange}
+                className="h-[100%] rounded-l-lg  group-hover:scale-105 group-hover:rounded-lg hover:transition-all duration-500 hover:ease-linear"
                 alt="enviorement"
               />
               <div className="p-2 flex flex-col justify-start">
@@ -80,10 +80,10 @@ const Learn = () => {
                 </button>
               </div>
             </div>
-            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg  flex">
+            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg flex group">
               <img
-                src={ozoneLayer} 
-                className="h-[100%] rounded-l-lg"
+                src={ozoneLayer}
+                className="h-[100%] rounded-l-lg  group-hover:scale-105 group-hover:rounded-lg hover:transition-all duration-500 hover:ease-linear"
                 alt="enviorement"
               />
               <div className="p-2 flex flex-col justify-start">
@@ -104,11 +104,10 @@ const Learn = () => {
             </div>
           </div>
           <div className="w-[100%] h-[50%]  flex p-2">
-            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg   flex">
-              {" "}
+            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg   flex group">
               <img
-                src={humans} 
-                className="h-[100%] rounded-l-lg"
+                src={humans}
+                className="h-[100%] rounded-l-lg  group-hover:scale-105 group-hover:rounded-lg hover:transition-all duration-500 hover:ease-linear"
                 alt="enviorement"
               />
               <div className="p-2 flex flex-col justify-start">
@@ -127,11 +126,11 @@ const Learn = () => {
                 </button>
               </div>
             </div>
-            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg  flex">
+            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg  flex group">
               {" "}
               <img
-                src={agriculture} 
-                className="h-[100%] rounded-l-lg"
+                src={agriculture}
+                className="h-[100%] rounded-l-lg  group-hover:scale-105 group-hover:rounded-lg hover:transition-all duration-500 hover:ease-linear"
                 alt="enviorement"
               />
               <div className="p-2 flex flex-col justify-start">
@@ -150,11 +149,11 @@ const Learn = () => {
                 </button>
               </div>
             </div>
-            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg  flex">
+            <div className="w-[33.33%] h-[100%] mr-2 bg-green-50 rounded-lg  flex group">
               {" "}
               <img
-                src={airPollution} 
-                className="h-[100%] rounded-l-lg"
+                src={airPollution}
+                className="h-[100%] rounded-l-lg  group-hover:scale-105 group-hover:rounded-lg hover:transition-all duration-500 hover:ease-linear"
                 alt="enviorement"
               />
               <div className="p-2 flex flex-col justify-start">

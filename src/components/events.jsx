@@ -18,9 +18,9 @@ const Events = () => {
           </div>
           <img src={events} className="h-[100%]" alt="eventImage" />
         </div>
-        <div className="w-full h-[70%] ">
+        <div className="w-full h-[70%] p-2 ">
           <div>
-            <h1 className="text-2xl font-semibold tracking-wide mb-4">
+            <h1 className="text-2xl text-[#34a853] font-semibold tracking-wide mb-4">
               Upcoming events
             </h1>
             <p className="w-[50%] paraColor">
@@ -29,7 +29,7 @@ const Events = () => {
               you learn more and take part in climate action.
             </p>
           </div>
-          <div className="h-[70%] w-full relative top-12 left-16 flex flex-col justify-center items-center">
+          <div className="h-[70%] w-full relative top-12 left-16 flex flex-col justify-center items-center ">
             <div className="h-[50%] w-[100%] flex items-center justify-center group">
               <img
                 src={comunistEvents}

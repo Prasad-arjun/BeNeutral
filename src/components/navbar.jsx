@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../resource/footstep.svg";
 import "../index.css";
+import { Link } from "react-router-dom";
 
 const navItems = [
   {
@@ -36,19 +37,14 @@ const Navabr = () => {
           </h1>
         </a>
         <div className=" flex justify-evenly items-center h-auto w-[55%] text-gray-900 font-medium text-lg  ">
-       
-            {navItems.map((value, index) => (
-              <div className="relative">
-              <a
-                href={value.url}
-                className="nav-link "
-                key={index}
-              >
+          {navItems.map((value, key) => (
+            <div className="relative" key={key}>
+              <Link to={value.name} className="nav-link ">
                 {value.name}
-              </a>
-              </div>
-            ))}
-          
+              </Link>
+            </div>
+          ))}
+
           <button className="bg-[#34a853] text-white h-10 w-24 rounded-md hover:-translate-y-2 transition duration-300 ease-linear">
             Sign in
           </button>

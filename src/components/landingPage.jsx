@@ -1,16 +1,16 @@
-
 import "../index.css";
 import earth1 from "../resource/earthIcon.svg";
 import footStep from "../resource/footstep.svg";
 import Earth from "../resource/earthIllustration.svg";
 
+
 const LandingPage = () => {
   return (
-    <div className=" w-full h-[100vh] flex justify-center items-center HeadingFont">
+    <div className=" w-full h-[100vh] flex justify-center items-center HeadingFont overflow-hidden">
       <div className="w-[95%] h-auto flex absolute">
         <div className="w-[55%] h-full justify-center items-start flex flex-col relative z-[1] top-[10rem] left-[3rem]  ">
           <div className="w-[100%] relative bottom-12">
-            <h1 className="text-5xl headColor font-semibold tracking-wide text-left relative">
+     <h1 className="text-5xl headColor font-semibold tracking-wide text-left relative">
               Reducing
               <img
                 src={footStep}
@@ -27,7 +27,7 @@ const LandingPage = () => {
               </div>
               Your journey to carbon neutrality ,
               <p className="mt-3 ">Begin here</p>
-            </h1>
+            </h1>  
           </div>
           <div className="w-[100%] mt-4 relative bottom-10">
             <h2 className="text-xl text-left  paraColor">
@@ -51,7 +51,7 @@ const LandingPage = () => {
         <div className="w-[45%] flex justify-center  items-center h-full relative earthHero  ">
           <img
             src={Earth}
-            className=" h-[90%] w-[90%] relative z-[-1] left-8 bottom-6 earthIllu"
+            className=" h-[90%] w-[90%] relative z-[-1] rounded-full  left-8 bottom-6  earthIlu"
           />
         </div>
       </div>
