@@ -2,8 +2,10 @@ import "../index.css";
 import events from "../resource/events.svg";
 import OlderPeopleEvents from "../resource/event1.jpg";
 import comunistEvents from "../resource/event2.jpg";
+import Industires from "./industries";
 const Events = () => {
   return (
+    <>
     <div className="h-[160vh] w-full  flex justify-center items-center headColor HeadingFont" id="Events">
       <div className="h-[98%] w-[95%] ">
         <div className="w-full h-[30%]  flex p-2 justify-start items-start">
@@ -84,6 +86,8 @@ const Events = () => {
         </div>
       </div>
     </div>
+    <Industires/>
+    </>
   );
 };
 export default Events;

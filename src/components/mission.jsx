@@ -1,6 +1,8 @@
 import "../index.css";
+import Learn from "./learn";
 const Mission = () => {
   return (
+    <>
     <div
       className="h-[100vh] w-full  flex justify-center items-center headColor HeadingFont"
       id="Mission"
@@ -83,6 +85,8 @@ const Mission = () => {
         </div>
       </div>
     </div>
+    <Learn/> 
+    </>
   );
 };
 export default Mission;

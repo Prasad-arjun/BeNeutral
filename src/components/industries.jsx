@@ -14,7 +14,7 @@ import atlasian from "../resource/atlassian.svg";
 import limeHome from "../resource/limehome.svg";
 const Industires = () => {
   return (
-    <div className="h-[100vh] w-[100vw] bg-green00  flex justify-center items-center HeadingFont headColor" id="For industries">
+    <div className="h-[100vh] w-[100vw] bg-green00  flex justify-center items-center HeadingFont headColor" id="forIndustries">
       <div className="h-[98%] w-[95%]  ">
         <div className="h-[100%] w-[100%] bg-green-0  flex flex-col justify-between items-start relative top-6">
           <div className="flex h-[60%] p-2">

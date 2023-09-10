@@ -6,8 +6,10 @@ import agriculture from "../resource/farmer.jpg";
 import humans from "../resource/humans.jpg";
 import ozoneLayer from "../resource/ozonelayer.jpg";
 import "../index.css";
+import Events from "./events";
 const Learn = () => {
   return (
+    <>
     <div className=" h-[150vh] w-full flex flex-col  justify-center items-center HeadingFont headColor p-4" id="Learn">
       <div className="h-[30%] w-[95%] flex  mt-4  justify-center ">
         <div className="h-[100%] w-[100%]   flex flex-col justify-center ">
@@ -176,6 +178,8 @@ const Learn = () => {
         </div>
       </div>
     </div>
+    <Events/>
+    </>
   );
 };
 

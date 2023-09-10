@@ -2,10 +2,14 @@ import "../index.css";
 import earth1 from "../resource/earthIcon.svg";
 import footStep from "../resource/footstep.svg";
 import Earth from "../resource/earthIllustration.svg";
+import Navabr from "./navbar";
+import Mission from "./mission";
 
 
 const LandingPage = () => {
   return (
+    <>
+    <Navabr/>
     <div className=" w-full h-[100vh] flex justify-center items-center HeadingFont overflow-hidden" id="/">
       <div className="w-[95%] h-auto flex absolute">
         <div className="w-[55%] h-full justify-center items-start flex flex-col relative z-[1] top-[10rem] left-[3rem]  ">
@@ -56,6 +60,8 @@ const LandingPage = () => {
         </div>
       </div>
     </div>
+<Mission/>
+</>
   );
 };
 
