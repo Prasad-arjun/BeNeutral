@@ -4,40 +4,17 @@ import "../index.css";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
-const navItems = [
-  {
-    name: "Mission",
-    url: "www.google.com",
-  },
-  {
-    name: "Calculate",
-    url: "www.google.com",
-  },
-  {
-    name: "Learn",
-    url: "www.google.com",
-  },
-  {
-    name: "Events",
-    url: "www.google.com",
-  },
-  {
-    name: "For industries",
-    url: "www.google.com",
-  },
-];
-
 const Navabr = () => {
-  const [isSticky, setIsSticky] = useState(false);
+    const [isSticky, setIsSticky] = useState(false);
 
-  // Function to handle scroll events
-  const handleScroll = () => {
-    if (window.scrollY > 100) {
-      // Adjust the scroll threshold as needed
-      setIsSticky(true);
-    } else {
-      setIsSticky(false);
-    }
+   // Function to handle scroll events
+     const handleScroll = () => {
+        if (window.scrollY > 100) {
+        // Adjust the scroll threshold as needed
+          setIsSticky(true);
+        } else {
+          setIsSticky(false);
+        }
   };
 
   useEffect(() => {
@@ -116,27 +93,9 @@ const Navabr = () => {
           >
             For industries
           </ScrollLink>
-
-          {/*  {navItems.map((value, key) => (
-            <div className="relative" key={key}>
-              <Link
-                activeClass="active"
-                spy={true}
-                smooth={true}
-                offset={-50} // Adjust this offset as needed
-                duration={1300}
-                to={value.name}
-                className="nav-link"
-              >
-                {value.name}
-              </Link>
-            </div>
-          ))} */}
-
           <RouterLink
             to="signInOut"
-            className="bg-[#34a853] text-center text-white h-10 w-24 rounded-md hover:-translate-y-2 transition duration-300 ease-linear"
-          >
+            className="bg-[#34a853] text-center text-white h-10 w-24 rounded-md hover:-translate-y-2 transition duration-300 ease-linear"  >
             <p className="mt-1">Sign in</p>
           </RouterLink>
         </div>
