@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../resource/footstep.svg";
+import { debounce } from 'lodash';
 import "../index.css";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
+/**
+ * Navbar component that displays a navigation bar with links to different sections of the website.
+ * @returns {JSX.Element} The JSX element that represents the Navbar component.
+ */
 const Navabr = () => {
     const [isSticky, setIsSticky] = useState(false);
 
    // Function to handle scroll events
-     const handleScroll = () => {
-        if (window.scrollY > 100) {
-        // Adjust the scroll threshold as needed
-          setIsSticky(true);
-        } else {
-          setIsSticky(false);
-        }
-  };
+   const handleScroll = debounce(() => {
+    if (window.scrollY > 100) {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
+    }
+  }, 100);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -94,8 +98,8 @@ const Navabr = () => {
             For industries
           </ScrollLink>
           <RouterLink
-            to="signInOut"
-            className="bg-[#34a853] text-center text-white h-10 w-24 rounded-md hover:-translate-y-2 transition duration-300 ease-linear"  >
+            to="signInOut"transition duration-300 ease-linear
+            className="bg-[#34a853] text-center text-white h-10 w-24 rounded-md hover:-translate-y-2 "  >
             <p className="mt-1">Sign in</p>
           </RouterLink>
         </div>

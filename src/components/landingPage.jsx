@@ -4,6 +4,7 @@ import footStep from "../resource/footstep.svg";
 import Earth from "../resource/earthIllustration.svg";
 import Navabr from "./navbar";
 import Mission from "./mission";
+import earth from "../resource/earth1.png"
 
 
 const LandingPage = () => {
@@ -54,7 +55,7 @@ const LandingPage = () => {
         </div>
         <div className="w-[45%] flex justify-center  items-center h-full relative earthHero  ">
           <img
-            src={Earth}
+            src={earth}
             className=" h-[90%] w-[90%] relative z-[-1] rounded-full  left-8 bottom-6  earthIlu"
           />
         </div>

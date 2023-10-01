@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../index.css";
-import TreeHero from "../resource/Tree house-pana.svg"
+import TreeHero from "../resource/Tree house-pana.svg";
 const SignInOut = () => {
   const [registerPanel, setregisterPanel] = useState(false);
   const toggleToSignIn = () => {
