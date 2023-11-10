@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import { Routes, Route } from "react-router-dom";
 import Calculate from "./components/calculate";
 import SignInOut from "./components/signInOut";
+import { UserProvider } from "./components/UserContext";
 function App() {
   useEffect(() => {
     AOS.init({ duration: 2000 }, { offset: 50 });
@@ -13,11 +14,13 @@ function App() {
   }, []);
   return (
     <div className="overflow-hidden">
-      <Routes>
-        <Route exact path="/" element={<LandingPage />}></Route>
-        <Route exact path="/calculate" element={<Calculate />}></Route>
-        <Route exact path="/signInOut" element={<SignInOut />}></Route>
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route exact path="/" element={<LandingPage />}></Route>
+          <Route exact path="/calculate" element={<Calculate />}></Route>
+          <Route exact path="/signInOut" element={<SignInOut />}></Route>
+        </Routes>
+      </UserProvider>
     </div>
   );
 }

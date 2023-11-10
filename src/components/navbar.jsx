@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../resource/footstep.svg";
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 import "../index.css";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
@@ -10,10 +10,10 @@ import { Link as ScrollLink } from "react-scroll";
  * @returns {JSX.Element} The JSX element that represents the Navbar component.
  */
 const Navabr = () => {
-    const [isSticky, setIsSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
-   // Function to handle scroll events
-   const handleScroll = debounce(() => {
+  // Function to handle scroll events
+  const handleScroll = debounce(() => {
     if (window.scrollY > 100) {
       setIsSticky(true);
     } else {
@@ -61,9 +61,9 @@ const Navabr = () => {
           >
             Mission
           </ScrollLink>
-          <RouterLink to="/calculate" className="nav-link relative">
+          {/*      <RouterLink to="/calculate" className="nav-link relative">
             Calculate
-          </RouterLink>
+          </RouterLink> */}
           <ScrollLink
             activeClass="active"
             spy={true}
@@ -98,8 +98,12 @@ const Navabr = () => {
             For industries
           </ScrollLink>
           <RouterLink
-            to="signInOut"transition duration-300 ease-linear
-            className="bg-[#34a853] text-center text-white h-10 w-24 rounded-md hover:-translate-y-2 "  >
+            to="signInOut"
+            transition
+            duration-300
+            ease-linear
+            className="bg-[#34a853] text-center text-white h-10 w-24 rounded-md hover:-translate-y-2 "
+          >
             <p className="mt-1">Sign in</p>
           </RouterLink>
         </div>

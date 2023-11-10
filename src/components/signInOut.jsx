@@ -2,8 +2,13 @@ import { useState } from "react";
 import "../index.css";
 import TreeHero from "../resource/Tree house-pana.svg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "./UserContext";
 
 const SignInOut = () => {
+  const navigate = useNavigate();
+  const { setUserLoggedIn } = useUser();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -39,6 +44,12 @@ const SignInOut = () => {
         .post("http://localhost:3005/login", { username, password })
         .then((response) => {
           console.log(response.data);
+          if (response.data === "Login successful!") {
+            setUserLoggedIn(true);
+            navigate("/calculate"); // Navigate to /calculate only on successful login
+          } else {
+            alert("Login failed");
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -53,6 +64,12 @@ const SignInOut = () => {
         })
         .then((response) => {
           console.log(response.data);
+          if (response.data === "Account created successfully!") {
+            setUserLoggedIn(true);
+            navigate("/calculate"); // Navigate to /calculate on successful account creation
+          } else {
+            alert("Enter the details correctly");
+          }
         })
         .catch((error) => {
           console.log(error);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import Marquee from "react-fast-marquee";
 import { Chart } from "chart.js/auto";
@@ -10,14 +10,35 @@ import flight from "../resource/flight.svg";
 import car from "../resource/car.svg";
 import bike from "../resource/bikes.svg";
 import train from "../resource/train.svg";
-import footprint from "../resource/footprint.png"
+import footprint from "../resource/footprint.png";
 
 const Calculate = () => {
   const [activeButton, setActiveButton] = useState("welcome");
 
-  const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName);
-  };
+  // state variables for the input fields in the "House" section
+  const [noOfPeople, setNoOfPeople] = useState(1);
+  const [electricity, setElectricity] = useState(0);
+  const [naturalGas, setNaturalGas] = useState(0);
+  const [lpg, setLpg] = useState(0);
+
+  // state variable for the flight
+  const [distanceBetweenTwoPlaces, setDistanceBetweenTwoPlaces] = useState(100);
+
+  // state variable for the car
+  const [cdistanceTravelled, setCDistanceTravelled] = useState(0);
+  const [cmilege, setCMilege] = useState(0);
+
+  // state variable for the bike
+  const [bdistanceTravelled, setBDistanceTravelled] = useState(0);
+  const [bmilege, setBMilege] = useState(0);
+
+  // state variable for the rail
+  const [rdistanceTravelled, setRDistanceTravelled] = useState(0);
+
+  // total footprint from household
+  const [houseHoldFootprint, setHouseHoldFootPrint] = useState(0);
+  //total flight footprint
+  const [flightFootprint, setFlightFootprint] = useState(0);
 
   const labels = ["House", "Flight", "Car", "MotorBikes", "Railways"];
   const barColors = ["#b91d47", "#ff6900", "#2b5797", "#e8c3b9", "#008080"];
@@ -29,10 +50,38 @@ const Calculate = () => {
         backgroundColor: barColors, // Background color with alpha (transparency)
         borderColor: "rgba(0,0,0)", // Border color with alpha (1 for no transparency)
         borderWidth: 1, // Border width in pixels
-        data: [12, 10, 5, 2, 20],
+        data: [houseHoldFootprint,flightFootprint, 5, 2, 20],
       },
     ],
   };
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
+
+  const houseHoldCo2Footprint = () => {
+    /* Formula to calculate household footprint 
+  Note value are taken in Kg per Kwh
+  Total Carbon Footprint=(People×190)+(Electricity Consumption×815)+(Natural Gas Usage×642)+(LPG Usage×734) */
+    const calculatedFootprint =
+      noOfPeople * 190 + electricity * 815 + naturalGas * 642 + lpg * 734;
+
+    setHouseHoldFootPrint(calculatedFootprint);
+  };
+
+  useEffect(() => {
+    console.log(houseHoldFootprint);
+  }, [houseHoldFootprint]);
+
+  const FlightFootprint = () => {
+    /* CO2 emission = Distance * Fuel burn * Emission factor
+    emission factor 3.15 kg CO2/kg fuel
+    Fuel burn = 0.6 kg average 
+   */
+    const FcalculatedFootprint = distanceBetweenTwoPlaces * 0.6 * 3.15;
+    setFlightFootprint(FcalculatedFootprint);
+  };
+  useEffect(() => {}, [flightFootprint]);
 
   return (
     <div className="h-[100vh] w-[100vw] flex">
@@ -132,8 +181,8 @@ const Calculate = () => {
                       Household carbon footprint calculator
                     </p>
                     <p className="z-[1] relative w-[80%] text-center p-2 mt-3">
-                      Enter your consumption of each type of energy, and press
-                      the Calculate button.
+                      Enter your consumption of each type of energy in monthly
+                      basis, and press the Calculate button.
                     </p>
                   </div>
 
@@ -148,6 +197,7 @@ const Calculate = () => {
                         min="1"
                         max="30"
                         className=" ml-3 border-black border-2 rounded-md"
+                        onChange={(e) => setNoOfPeople(e.target.value)}
                       />
                     </div>
                     <div className="mt-6">
@@ -158,6 +208,7 @@ const Calculate = () => {
                         min="1"
                         max="30"
                         className=" ml-2 border-black border-2 rounded-md relative left-14"
+                        onChange={(e) => setElectricity(e.target.value)}
                       />
                       <span className="relative left-[3.8rem] font-semibold">
                         kWh
@@ -171,9 +222,10 @@ const Calculate = () => {
                         min="1"
                         max="30"
                         className=" ml-2 relative left-[2.30rem] border-black border-2 rounded-md"
+                        onChange={(e) => setNaturalGas(e.target.value)}
                       />
                       <span className="ml-1 relative left-10 font-semibold">
-                        kWh
+                        cubic feet (scf)
                       </span>
                     </div>
                     <div className="mt-2">
@@ -184,28 +236,23 @@ const Calculate = () => {
                         min="1"
                         max="30"
                         className=" ml-3 border-black border-2 rounded-md relative left-[5.8rem]"
+                        onChange={(e) => setLpg(e.target.value)}
                       />
                       <span className="ml-1 relative left-24 font-semibold">
                         Liters
                       </span>
                     </div>
-                    <div className="mt-2">
-                      <label className="font-medium">Woodeen pallets:</label>
-                      <input
-                        type="number"
-                        name="noOfPeople"
-                        min="1"
-                        max="30"
-                        className=" ml-3 border-black border-2 rounded-md"
-                      />
-                      <span className="ml-1 font-semibold">kg</span>
-                    </div>
+
                     <div className="w-[100%] h-[100%] flex relative top-10">
-                      <button className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear">
+                      <button
+                        className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[20%] mr-4  hover:translate-y-1 transition duration-300 ease-linear"
+                        onClick={houseHoldCo2Footprint}
+                      >
                         Calculate
                       </button>
-                      <p className="text-black  relative top-1">
-                        Total house footprint = 23 metric tons of CO<sub>2</sub>
+                      <p className="text-black relative text-base top-1 w-[100%]">
+                        CO2 footprint on monthly basis ={" "}
+                        {houseHoldFootprint / 1000} tones
                       </p>
                     </div>
                   </div>
@@ -240,9 +287,12 @@ const Calculate = () => {
                       <input
                         type="number"
                         name="noOfPeople"
-                        min="1"
-                        max="30"
+                        min="100"
+                        max=""
                         className=" ml-3 border-black border-2 rounded-md"
+                        onChange={(e) =>
+                          setDistanceBetweenTwoPlaces(e.target.value)
+                        }
                       />
                     </div>
                     <div className="mt-6">
@@ -273,11 +323,15 @@ const Calculate = () => {
                     </div>
 
                     <div className="w-[100%] h-[100%] flex relative top-10">
-                      <button className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear">
+                      <button
+                        className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear"
+                        onClick={FlightFootprint}
+                      >
                         Calculate
                       </button>
                       <p className="text-black  relative top-1">
-                        Total flight footprint = 23 metric tons of CO
+                        Total flight footprint = {flightFootprint/1000} metric tons
+                        of CO
                         <sub>2</sub>
                       </p>
                     </div>
@@ -316,6 +370,7 @@ const Calculate = () => {
                         min="1"
                         max="30"
                         className=" ml-3 border-black border-2 rounded-md"
+                        onChange={(e) => setCDistanceTravelled(e.target.value)}
                       />
                     </div>
                     <div className="mt-6">
@@ -334,6 +389,7 @@ const Calculate = () => {
                         min="1"
                         max="30"
                         className=" ml-2 relative left-[4.30rem] border-black border-2 rounded-md"
+                        onChange={(e) => setCMilege(e.target.value)}
                       />
                       <span className="ml-1 relative left-20 font-semibold">
                         KM
@@ -382,6 +438,7 @@ const Calculate = () => {
                         min="1"
                         max="30"
                         className=" ml-3 border-black border-2 rounded-md"
+                        onChange={(e) => setBDistanceTravelled(e.target.value)}
                       />
                     </div>
                     <div className="mt-6">
@@ -398,6 +455,7 @@ const Calculate = () => {
                         min="1"
                         max="30"
                         className=" ml-2 relative left-[4.30rem] border-black border-2 rounded-md"
+                        onChange={(e) => setBMilege(e.target.value)}
                       />
                       <span className="ml-1 relative left-20 font-semibold">
                         KM
@@ -445,6 +503,7 @@ const Calculate = () => {
                         name="noOfPeople"
                         min="1"
                         className=" ml-3 border-black border-2 rounded-md w-[13%]"
+                        onChange={(e) => setRDistanceTravelled(e.target.value)}
                       />
                     </div>
                     <div className="mt-6">
@@ -487,7 +546,7 @@ const Calculate = () => {
               <h1 className="text-center text-lg p-2">
                 You're from 1% from the country with metic ton carbon Emission
               </h1>
-              <img src={footprint} alt="footprint image" className="h-[50%]"/>
+              <img src={footprint} alt="footprint image" className="h-[50%]" />
             </div>
           </div>
           <div className="h-[40%] w-[100%] bg-green-200 flex justify-center items-center">
