@@ -166,6 +166,28 @@ html.has-scroll-dragging {
   transition: all 0.5s ease-in-out;
 }
 
+/* get measure button and contain visibility control */
 
+.notClicked {
+  background-color: #34a853;
+  position: absolute;
+  z-index: 4;
+  color: white;
+  height: 2.5rem;
+  width: 10%;
+  border-radius: 0.375rem;
+}
+.notClicked:hover {
+  background-color: white;
+  color: #34a853;
+  border: 2px #34a853 solid;
+  animation-duration: 500ms;
+  animation-timing-function: linear;
+}
 
-/* Rest of your CSS remains the same as in the previous answer */
+.clicked {
+  display: none;
+}
+.clickedP {
+  filter: blur(0px);
+}

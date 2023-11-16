@@ -4,6 +4,7 @@ import { debounce } from "lodash";
 import "../index.css";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import Shery from "sheryjs";
 
 /**
  * Navbar component that displays a navigation bar with links to different sections of the website.
@@ -28,9 +29,15 @@ const Navabr = () => {
     };
   }, []);
 
+/*   Shery.makeMagnet(".Name", {
+    //Parameters are optional.
+    ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+    duration: 1,
+  }); */
+
   return (
     <div
-      className={`navHeadingFont ${
+      className={` navHeadingFont ${
         isSticky ? "sticky" : ""
       } navHeadingFont h-[5rem] w-[100vw] flex justify-center items-center pt-4 cursor-pointer`}
     >
@@ -45,7 +52,7 @@ const Navabr = () => {
           className="flex justify-center items-center"
         >
           <img src={Logo} className="h-14" alt="Logo" />
-          <h1 className="p-2 m-2 text-xl text-[#34a853] font-medium">
+          <h1 className="p-2 m-2 text-xl text-[#34a853] font-medium Name">
             Be<span className="text-black">Neutral</span>
           </h1>
         </ScrollLink>
@@ -57,7 +64,7 @@ const Navabr = () => {
             offset={-50}
             duration={1300}
             to="Mission"
-            className="nav-link relative"
+            className="Name nav-link relative"
           >
             Mission
           </ScrollLink>
@@ -71,7 +78,7 @@ const Navabr = () => {
             offset={-50}
             duration={1300}
             to="Learn"
-            className="nav-link relative"
+            className="Name nav-link relative"
           >
             Learn
           </ScrollLink>
@@ -82,7 +89,7 @@ const Navabr = () => {
             offset={-50}
             duration={1300}
             to="Events"
-            className="nav-link relative"
+            className=" Name nav-link relative"
           >
             Events
           </ScrollLink>
@@ -93,7 +100,7 @@ const Navabr = () => {
             offset={-50}
             duration={1300}
             to="forIndustries"
-            className="nav-link relative"
+            className="Name nav-link relative"
           >
             For industries
           </ScrollLink>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import React from "react";
 import Marquee from "react-fast-marquee";
 import { Chart } from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
@@ -16,17 +15,18 @@ const Calculate = () => {
   const [activeButton, setActiveButton] = useState("welcome");
 
   // state variables for the input fields in the "House" section
-  const [noOfPeople, setNoOfPeople] = useState(1);
+  const [noOfPeople, setNoOfPeople] = useState(0);
   const [electricity, setElectricity] = useState(0);
   const [naturalGas, setNaturalGas] = useState(0);
   const [lpg, setLpg] = useState(0);
 
   // state variable for the flight
-  const [distanceBetweenTwoPlaces, setDistanceBetweenTwoPlaces] = useState(100);
+  const [distanceBetweenTwoPlaces, setDistanceBetweenTwoPlaces] = useState(0);
 
   // state variable for the car
   const [cdistanceTravelled, setCDistanceTravelled] = useState(0);
   const [cmilege, setCMilege] = useState(0);
+  const [typeOfFule, setTypeOfFuel] = useState("CNG");
 
   // state variable for the bike
   const [bdistanceTravelled, setBDistanceTravelled] = useState(0);
@@ -39,6 +39,18 @@ const Calculate = () => {
   const [houseHoldFootprint, setHouseHoldFootPrint] = useState(0);
   //total flight footprint
   const [flightFootprint, setFlightFootprint] = useState(0);
+  //total car footprint
+  const [carFootrpint, setCarFootprint] = useState(0);
+  // total bike footprint
+  const [bikeFooptrint, setBikeFootprint] = useState(0);
+  //total railways footprint
+  const [railwaysFootprint, setRailwaysFootprint] = useState(0);
+
+  //visibilty controls for the suggested measures
+  const [isClicked, setIsClicked] = useState(false);
+
+  //measures
+  const [measures, setMeasures] = useState("");
 
   const labels = ["House", "Flight", "Car", "MotorBikes", "Railways"];
   const barColors = ["#b91d47", "#ff6900", "#2b5797", "#e8c3b9", "#008080"];
@@ -50,7 +62,13 @@ const Calculate = () => {
         backgroundColor: barColors, // Background color with alpha (transparency)
         borderColor: "rgba(0,0,0)", // Border color with alpha (1 for no transparency)
         borderWidth: 1, // Border width in pixels
-        data: [houseHoldFootprint,flightFootprint, 5, 2, 20],
+        data: [
+          houseHoldFootprint / 1000,
+          flightFootprint / 1000,
+          carFootrpint,
+          bikeFooptrint,
+          railwaysFootprint,
+        ],
       },
     ],
   };
@@ -59,29 +77,201 @@ const Calculate = () => {
     setActiveButton(buttonName);
   };
 
-  const houseHoldCo2Footprint = () => {
-    /* Formula to calculate household footprint 
-  Note value are taken in Kg per Kwh
-  Total Carbon Footprint=(People×190)+(Electricity Consumption×815)+(Natural Gas Usage×642)+(LPG Usage×734) */
-    const calculatedFootprint =
-      noOfPeople * 190 + electricity * 815 + naturalGas * 642 + lpg * 734;
+  const houseHoldCo2Calcu = () => {
+    if (
+      noOfPeople === 0 ||
+      electricity === 0 ||
+      naturalGas === 0 ||
+      lpg === 0
+    ) {
+      alert("Enter the value");
+    } else {
+      const calculatedFootprint =
+        parseFloat(noOfPeople) * 190 +
+        parseFloat(electricity) * 815 +
+        parseFloat(naturalGas) * 642 +
+        parseFloat(lpg) * 734;
 
-    setHouseHoldFootPrint(calculatedFootprint);
+      setHouseHoldFootPrint(Number(calculatedFootprint.toFixed(3)));
+    }
   };
 
-  useEffect(() => {
-    console.log(houseHoldFootprint);
-  }, [houseHoldFootprint]);
+  useEffect(() => {}, [houseHoldFootprint]);
 
-  const FlightFootprint = () => {
+  const FlightFootCalcu = () => {
     /* CO2 emission = Distance * Fuel burn * Emission factor
     emission factor 3.15 kg CO2/kg fuel
     Fuel burn = 0.6 kg average 
    */
-    const FcalculatedFootprint = distanceBetweenTwoPlaces * 0.6 * 3.15;
-    setFlightFootprint(FcalculatedFootprint);
+    if (distanceBetweenTwoPlaces === 0) {
+      alert("Enter the values");
+    } else {
+      const FcalculatedFootprint = distanceBetweenTwoPlaces * 0.6 * 3.15;
+      setFlightFootprint(Number(FcalculatedFootprint.toFixed(3)));
+    }
   };
   useEffect(() => {}, [flightFootprint]);
+
+  /* carbon emission factor based on type of fuel */
+
+  const CarbonEmissionFactorBasedOnFuel = {
+    CNG: 0.985,
+    Diesel: 2.66,
+    Petrol: 2.33,
+  };
+
+  const carCarbonCalcu = () => {
+    /* formula to calculate the carbon footprint :
+carbonFootprint = (distanceNum / mileageNum) * emissionFactor;
+ */
+
+    if (cdistanceTravelled === 0 || cmilege === 0 || typeOfFule === "") {
+      alert("Enter the values");
+    } else {
+      const CcalculatedFootprint =
+        (cdistanceTravelled / cmilege) *
+        CarbonEmissionFactorBasedOnFuel[typeOfFule];
+
+      setCarFootprint(Number(CcalculatedFootprint.toFixed(3)));
+    }
+  };
+  useEffect(() => {}, [carFootrpint]);
+
+  const bikeCarbonCalcu = () => {
+    /* formula to calculate the carbon footprint : 
+    carbonFootprint =(distance/mileage)* emissionFactor
+     */
+    if (bdistanceTravelled === 0 || bmilege === 0) {
+      alert("Enter the values ");
+    } else {
+      const BcalculatedFootprint = (bdistanceTravelled / bmilege) * 2.33;
+      setBikeFootprint(Number(BcalculatedFootprint.toFixed(3)));
+    }
+  };
+  useEffect(() => {}, [bikeFooptrint]);
+
+  const RcarbonCalcu = () => {
+    /* formula to calculate the carbon footprint  
+      CarbonFootprint =(distance/mileage)*emissionFactor 
+    */
+    if (rdistanceTravelled === 0) {
+      alert("Enter the values");
+    } else {
+      const RcalculatedFootprint = (rdistanceTravelled / 7.97) * 2.66;
+      setRailwaysFootprint(Number(RcalculatedFootprint.toFixed(3)));
+    }
+  };
+  useEffect(() => {}, [railwaysFootprint]);
+
+  // Assuming you have all your calculated values in these variables
+
+  const maxCarbonEmissionSource = () => {
+    const values = data.datasets[0].data;
+
+    // Finding the maximum value
+    const maxValue = Math.max(...values);
+
+    // Finding the index of the maximum value
+    const maxIndex = values.indexOf(maxValue);
+
+    // Extracting the corresponding label for the maximum value
+    const maxLabel = data.labels[maxIndex];
+
+    // Logging or using the maximum value and label
+    console.log("Maximum Value:", maxValue);
+    console.log("Corresponding Label:", maxLabel);
+    TotalFootPrint();
+
+    switch (maxLabel) {
+      case "Railways":
+        setMeasures(
+          <>
+            1. Choose Electric Train
+            <br />
+            2. Travel Off-Peak
+            <br />
+            3. Use Railcards
+            <br />
+          </>
+        );
+        break;
+      case "Car":
+        setMeasures(
+          <>
+            1.Choose a fuel-efficient or electric car for lower emissions.
+            <br />
+            2.Regular maintenance improves efficiency, reducing your vehicle's
+            carbon footprint.
+            <br />
+            3.Carpool, use public transport to cut down individual car trips.
+            <br />
+          </>
+        );
+        break;
+      case "MotorBikes":
+        setMeasures(
+          <>
+            1.Optimize Routes: Plan efficient routes to minimize mileage and
+            reduce fuel consumption.
+            <br />
+            2.Regular Maintenance: Ensure your bike is well-maintained for
+            optimal fuel efficiency.
+            <br />
+            3.Eco-friendly Driving: Practice smooth acceleration and braking for
+            fuel-efficient and eco-friendly biking.
+            <br />
+          </>
+        );
+        break;
+      case "Flight":
+        setMeasures(
+          <>
+            1.Fly Direct: Non-stop flights emit less carbon, reducing your
+            overall environmental impact.
+            <br />
+            2.Choose Eco-friendly Airlines: Opt for airlines committed to
+            sustainability and carbon offset programs.
+            <br />
+            3.Pack Light: Less luggage means lower fuel consumption and reduced
+            carbon emissions during flights.
+            <br />
+          </>
+        );
+        break;
+      case "House":
+        setMeasures(
+          <>
+            1. Energy-Efficient Appliances: Upgrade to energy-efficient devices
+            to reduce electricity consumption in your household.
+            <br />
+            2.Waste Recycling: Implement a recycling system for household waste
+            to minimize environmental impact.
+            <br />
+            3.Water Conservation: Use water-saving techniques and fix leaks to
+            reduce water consumption at home.
+            <br />
+          </>
+        );
+        break;
+      default:
+        console.log("Error occurred");
+        break;
+    }
+  };
+
+  const TotalFootPrint = () => {
+    if (
+      houseHoldFootprint === 0 ||
+      carFootrpint === 0 ||
+      bikeFooptrint === 0 ||
+      flightFootprint === 0 ||
+      railwaysFootprint === 0
+    ) {
+      alert("first calculate the footprint for the all the inputs ");
+    } else {
+      setIsClicked(!isClicked);
+    }
+  };
 
   return (
     <div className="h-[100vh] w-[100vw] flex">
@@ -135,7 +325,7 @@ const Calculate = () => {
               }`}
               onClick={() => handleButtonClick("bus")}
             >
-              Bus and Rail
+              Railways
             </button>
           </div>
           <div className="w-[100%] h-[90%]">
@@ -196,7 +386,7 @@ const Calculate = () => {
                         name="noOfPeople"
                         min="1"
                         max="30"
-                        className=" ml-3 border-black border-2 rounded-md"
+                        className="pl-1 ml-3 border-black border-2 rounded-md"
                         onChange={(e) => setNoOfPeople(e.target.value)}
                       />
                     </div>
@@ -204,10 +394,10 @@ const Calculate = () => {
                       <label className="font-medium">Electricity:</label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="elcectricity"
                         min="1"
                         max="30"
-                        className=" ml-2 border-black border-2 rounded-md relative left-14"
+                        className="pl-1 ml-2 border-black border-2 rounded-md relative left-14"
                         onChange={(e) => setElectricity(e.target.value)}
                       />
                       <span className="relative left-[3.8rem] font-semibold">
@@ -218,10 +408,10 @@ const Calculate = () => {
                       <label className="font-medium">Natural gas :</label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="natural gas"
                         min="1"
                         max="30"
-                        className=" ml-2 relative left-[2.30rem] border-black border-2 rounded-md"
+                        className="pl-1 ml-2 relative left-[2.30rem] border-black border-2 rounded-md"
                         onChange={(e) => setNaturalGas(e.target.value)}
                       />
                       <span className="ml-1 relative left-10 font-semibold">
@@ -232,10 +422,10 @@ const Calculate = () => {
                       <label className="font-medium">LPG:</label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="LPG"
                         min="1"
                         max="30"
-                        className=" ml-3 border-black border-2 rounded-md relative left-[5.8rem]"
+                        className="pl-1 ml-3 border-black border-2 rounded-md relative left-[5.8rem]"
                         onChange={(e) => setLpg(e.target.value)}
                       />
                       <span className="ml-1 relative left-24 font-semibold">
@@ -246,7 +436,7 @@ const Calculate = () => {
                     <div className="w-[100%] h-[100%] flex relative top-10">
                       <button
                         className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[20%] mr-4  hover:translate-y-1 transition duration-300 ease-linear"
-                        onClick={houseHoldCo2Footprint}
+                        onClick={houseHoldCo2Calcu}
                       >
                         Calculate
                       </button>
@@ -286,10 +476,10 @@ const Calculate = () => {
                       </label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="fdistance"
                         min="100"
                         max=""
-                        className=" ml-3 border-black border-2 rounded-md"
+                        className="pl-1 ml-3 w-[15%] border-black border-2 rounded-md"
                         onChange={(e) =>
                           setDistanceBetweenTwoPlaces(e.target.value)
                         }
@@ -299,39 +489,29 @@ const Calculate = () => {
                       <label className="font-medium">From:</label>
                       <input
                         type="text"
-                        name="noOfPeople"
-                        min="1"
-                        max="30"
-                        className=" ml-2 border-black border-2 rounded-md relative left-8"
+                        name="from"
+                        className="pl-1 ml-2 border-black border-2 rounded-md relative left-8"
                       />
-                      <span className="relative left-[2.2rem] font-semibold">
-                        KM
-                      </span>
                     </div>
                     <div className="mt-2">
                       <label className="font-medium">To:</label>
                       <input
                         type="text"
-                        name="noOfPeople"
-                        min="1"
-                        max="30"
-                        className=" ml-2 relative left-[3.30rem] border-black border-2 rounded-md"
+                        name="to"
+                        className="pl-1 ml-2 relative left-[3.30rem] border-black border-2 rounded-md"
                       />
-                      <span className="ml-1 relative left-14 font-semibold">
-                        KM
-                      </span>
                     </div>
 
                     <div className="w-[100%] h-[100%] flex relative top-10">
                       <button
                         className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear"
-                        onClick={FlightFootprint}
+                        onClick={FlightFootCalcu}
                       >
                         Calculate
                       </button>
                       <p className="text-black  relative top-1">
-                        Total flight footprint = {flightFootprint/1000} metric tons
-                        of CO
+                        Total flight footprint = {flightFootprint / 1000} metric
+                        tons of CO
                         <sub>2</sub>
                       </p>
                     </div>
@@ -366,16 +546,18 @@ const Calculate = () => {
                       </label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="cdistance"
                         min="1"
-                        max="30"
-                        className=" ml-3 border-black border-2 rounded-md"
+                        className="pl-1 ml-3 border-black border-2 rounded-md w-[10%]"
                         onChange={(e) => setCDistanceTravelled(e.target.value)}
                       />
                     </div>
                     <div className="mt-6">
                       <label className="font-medium">Type of fuel :</label>
-                      <select className="font-medium ml-2 border-black border-2 rounded-md relative left-8">
+                      <select
+                        className="font-medium ml-2 border-black border-2 rounded-md relative left-8"
+                        onChange={(e) => setTypeOfFuel(e.target.value)}
+                      >
                         <option>CNG</option>
                         <option>Petrol</option>
                         <option>Diesel</option>
@@ -385,10 +567,9 @@ const Calculate = () => {
                       <label className="font-medium">Milege :</label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="cmilege"
                         min="1"
-                        max="30"
-                        className=" ml-2 relative left-[4.30rem] border-black border-2 rounded-md"
+                        className="pl-1 ml-2 w-[12%] relative left-[4.30rem] border-black border-2 rounded-md"
                         onChange={(e) => setCMilege(e.target.value)}
                       />
                       <span className="ml-1 relative left-20 font-semibold">
@@ -397,11 +578,15 @@ const Calculate = () => {
                     </div>
 
                     <div className="w-[100%] h-[100%] flex relative top-10">
-                      <button className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear">
+                      <button
+                        className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear"
+                        onClick={carCarbonCalcu}
+                      >
                         Calculate
                       </button>
                       <p className="text-black  relative top-1">
-                        Total car footprint = 23 metric tons of CO<sub>2</sub>
+                        Total car footprint = {carFootrpint} metric tons of CO
+                        <sub>2</sub>
                       </p>
                     </div>
                   </div>
@@ -434,10 +619,9 @@ const Calculate = () => {
                       </label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="bdistance"
                         min="1"
-                        max="30"
-                        className=" ml-3 border-black border-2 rounded-md"
+                        className="pl-1 ml-3 w-[12%] border-black border-2 rounded-md"
                         onChange={(e) => setBDistanceTravelled(e.target.value)}
                       />
                     </div>
@@ -451,10 +635,9 @@ const Calculate = () => {
                       <label className="font-medium">Milege :</label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="bmilege"
                         min="1"
-                        max="30"
-                        className=" ml-2 relative left-[4.30rem] border-black border-2 rounded-md"
+                        className="pl-1 ml-2 w-[12%] relative left-[4.30rem] border-black border-2 rounded-md"
                         onChange={(e) => setBMilege(e.target.value)}
                       />
                       <span className="ml-1 relative left-20 font-semibold">
@@ -463,11 +646,15 @@ const Calculate = () => {
                     </div>
 
                     <div className="w-[100%] h-[100%] flex relative top-10">
-                      <button className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear">
+                      <button
+                        className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear"
+                        onClick={bikeCarbonCalcu}
+                      >
                         Calculate
                       </button>
                       <p className="text-black  relative top-1">
-                        Total bike footprint = 23 metric tons of CO<sub>2</sub>
+                        Total bike footprint = {bikeFooptrint} metric tons of CO
+                        <sub>2</sub>
                       </p>
                     </div>
                   </div>
@@ -500,9 +687,9 @@ const Calculate = () => {
                       </label>
                       <input
                         type="number"
-                        name="noOfPeople"
+                        name="rdistance"
                         min="1"
-                        className=" ml-3 border-black border-2 rounded-md w-[13%]"
+                        className="pl-1 ml-3 border-black border-2 rounded-md w-[13%]"
                         onChange={(e) => setRDistanceTravelled(e.target.value)}
                       />
                     </div>
@@ -517,11 +704,15 @@ const Calculate = () => {
                     </div>
 
                     <div className="w-[100%] h-[100%] flex relative top-10">
-                      <button className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear">
+                      <button
+                        className="relative font-bold text-white rounded-lg bg-[#34a853]  h-8 w-[25%] mr-4  hover:translate-y-1 transition duration-300 ease-linear"
+                        onClick={RcarbonCalcu}
+                      >
                         Calculate
                       </button>
                       <p className="text-black  relative top-1">
-                        Total train footprint = 23 metric tons of CO<sub>2</sub>
+                        Total train footprint ={railwaysFootprint} metric tons
+                        of CO<sub>2</sub>
                       </p>
                     </div>
                   </div>
@@ -536,20 +727,26 @@ const Calculate = () => {
           </div>
         </div>
       </div>
+
+      {/* right pannel start  */}
       <div className="h-full w-[60%] bg-slate-50 shadow-md flex justify-center items-center">
         <div className="h-[98%] w-[98%] ">
           <div className="h-[60%] w-[100%] border-2 flex  border-black ">
             <div className="h-[95%] w-[60%] flex justify-center items-center">
               <Pie data={data} />
             </div>
-            <div className=" w-[40%] border-black border-l-2 flex flex-col justify-evenly items-center">
-              <h1 className="text-center text-lg p-2">
-                You're from 1% from the country with metic ton carbon Emission
+             <div className=" w-[40%] border-black border-l-2 flex flex-col justify-evenly items-center">
+              <h1 className="text-center text-lg p-2 relative bottom-8 font-bold headColor">
+                Based on the input data you comes in top {2 + 2}% people
               </h1>
-              <img src={footprint} alt="footprint image" className="h-[50%]" />
-            </div>
+              <img
+                src={footprint}
+                alt="footprint image"
+                className="h-[55%] relative bottom-3"
+              />
+            </div> 
           </div>
-          <div className="h-[40%] w-[100%] bg-green-200 flex justify-center items-center">
+          <div className="h-[40%] w-[100%] flex justify-center items-center">
             <div className="h-[95%] w-[100%]">
               <p className="text-start font-medium text-xl headColor ml-2 mt-2">
                 Measure to take in order to reduce your carbon impact on mother
@@ -558,42 +755,53 @@ const Calculate = () => {
 
               <Marquee
                 autoFill={true}
-                speed={40}
+                speed={30}
                 gradient={true}
                 pauseOnHover={false}
                 gradientWidth={0}
-                className=" w-[100%] mt-5 flex justify-center text-black bg-green-200 items-center relative bottom-4"
+                className=" w-[100%] mt-2 flex justify-center text-black b items-center relative bottom-2"
               >
-                <p className="m-5">
-                  1.Limit Car Usage; Opt for Public Transport or Carpooling.
+                <p className="m-4">
+                  Limit Car Usage; Opt for Public Transport or Carpooling.
                 </p>
-                <p className="m-5">
-                  2.Conserve Energy; Use LED Bulbs and Unplug Unused Appliances.
+                <p className="m-4">
+                  Conserve Energy; Use LED Bulbs and Unplug Unused Appliances.
                 </p>
-                <p className="m-5">
-                  3.Reduce, Reuse, Recycle; Minimize Single-Use Plastics and
+                <p className="m-4">
+                  Reduce, Reuse, Recycle; Minimize Single-Use Plastics and
                   Paper.
                 </p>
-                <p className="m-5">
-                  4.Plant Trees; Promote Green Spaces for Carbon Sequestration.
+                <p className="m-4">
+                  Plant Trees; Promote Green Spaces for Carbon Sequestration.
                 </p>
-                <p className="m-5">
-                  5.Choose Sustainable Products; Support Eco-Friendly and Local
+                <p className="m-4">
+                  Choose Sustainable Products; Support Eco-Friendly and Local
                   Businesses.
                 </p>
               </Marquee>
-              <h1 className="text-start font-medium text-xl headColor ml-2 mt-1">
-                Suggested measure based on your result.
+              <h1 className="text-start font-medium text-xl headColor ml-2">
+                Suggested measure based on your result :
               </h1>
-              <div className="ml-2 mt-4">
-                <p>1.</p>
-                <p>2.</p>
-                <p>3.</p>
+              <div className="ml-2 mt-2 flex justify-center items-center h-[50%] w-[100%] ">
+                <button
+                  className={`notClicked ${isClicked ? "clicked" : ""}`}
+                  onClick={maxCarbonEmissionSource}
+                >
+                  Get measures
+                </button>
+                <div
+                  className={`notClickedP ${
+                    isClicked ? "clickedP" : ""
+                  }blur-[5px] relative h-[100%] w-[100%] z-[3] rounded-md bg-green-200 `}
+                >
+                  <p className="m-2 font-medium mt-5 pl-3">{measures}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {/* right pannel ends  */}
     </div>
   );
 };

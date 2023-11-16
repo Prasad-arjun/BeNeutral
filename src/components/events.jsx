@@ -2,7 +2,7 @@ import "../index.css";
 import events from "../resource/events.svg";
 import OlderPeopleEvents from "../resource/event1.jpg";
 import comunistEvents from "../resource/event2.jpg";
-import Industires from "./industries";
+import Industires from "./industries";  
 const Events = () => {
   return (
     <>

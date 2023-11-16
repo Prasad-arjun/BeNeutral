@@ -83,13 +83,17 @@ const SignInOut = () => {
         <div className="w-[60%] h-[100%] bg-green-200 flex justify-center items-start ">
           <img src={TreeHero} className="h-[110%] " alt="login page image " />
         </div>
-        <div className="w-[40%] h-[100%] flex justify-center items-center">
+        <div className=" w-[40%] h-[100%] flex flex-col justify-center items-center bg-slate-50 shadow-2xl rounded-xl">
+          <h1 className="p-2  mt-4  text-2xl text-[#34a853] font-medium Name">
+            Be<span className="text-black">Neutral</span>
+          </h1>
+          <p>One stop solution for the carbon footprint calculation.</p>
           <form
             className="w-[90%] h-full flex flex-col justify-evenly items-center  "
             onSubmit={handleSubmit}
           >
             {!registerPanel ? (
-              <div className="h-[65%] w-[60%] flex flex-col justify-between items-center ">
+              <div className="h-[65%] w-[60%] flex flex-col justify-between items-center  ">
                 <label className="text-2xl font-semibold relative  bottom-6">
                   Create an account
                 </label>
@@ -128,7 +132,7 @@ const SignInOut = () => {
                   <input
                     type="password"
                     name="password"
-                    placeholder="1213131"
+                    placeholder="abcs@323"
                     autoComplete="true"
                     required={true}
                     className="h-10 w-80 p-2 rounded-md border-2 border-green-200 focus:drop-shadow-xl focus:outline-none group"
@@ -143,7 +147,7 @@ const SignInOut = () => {
                   <input
                     type="password"
                     name="confirmPassword"
-                    placeholder="1213131"
+                    placeholder="abcs@323"
                     autoComplete="true"
                     required={true}
                     className="h-10 w-80 p-2 rounded-md border-2 border-green-200 focus:drop-shadow-xl focus:outline-none group"
@@ -189,7 +193,7 @@ const SignInOut = () => {
                     <input
                       type="password"
                       name="password"
-                      placeholder="1213131"
+                      placeholder="abcs@323"
                       autoComplete="true"
                       required={true}
                       className="h-10 w-80 p-2 rounded-md border-2 border-green-200 focus:drop-shadow-xl focus:outline-none group"
@@ -198,7 +202,7 @@ const SignInOut = () => {
                     />
                   </div>
                   <button
-                    className="bg-[#34a853] text-white  h-10 w-80 rounded-md  hover:bg-white hover:text-[#34a853] hover:border-2 hover:border-[#34a853] hover:scale-95 hover:transition-all duration-500 hover:ease-linear"
+                    className="bg-[#34a853] mt-1 text-white  h-10 w-80 rounded-md  hover:bg-white hover:text-[#34a853] hover:border-2 hover:border-[#34a853] hover:scale-95 hover:transition-all duration-500 hover:ease-linear"
                     type="submit"
                   >
                     Login

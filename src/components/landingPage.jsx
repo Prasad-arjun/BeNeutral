@@ -6,6 +6,7 @@ import Mission from "./mission";
 import earth from "../resource/earth1.png";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "./UserContext";
+import Shery from "sheryjs";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -27,9 +28,9 @@ const LandingPage = () => {
         id="/"
       >
         <div className="w-[95%] h-auto flex absolute">
-          <div className="w-[55%] h-full justify-center items-start flex flex-col relative z-[1] top-[10rem] left-[3rem]  ">
+          <div  className="w-[55%] h-full justify-center items-start flex flex-col relative z-[1] top-[10rem] left-[3rem]">
             <div className="w-[100%] relative bottom-12">
-              <h1 className="text-5xl headColor font-semibold tracking-wide text-left relative">
+              <h1 className="animateText text-5xl headColor font-semibold tracking-wide text-left relative">
                 Reducing
                 <img
                   src={footStep}
@@ -71,7 +72,7 @@ const LandingPage = () => {
           <div className="w-[45%] flex justify-center  items-center h-full relative earthHero  ">
             <img
               src={earth}
-              className=" h-[90%] w-[90%] relative z-[-1] rounded-full  left-8 bottom-6  earthIlu"
+              className="heroImg h-[90%] w-[90%] relative z-[-1] rounded-full  left-8 bottom-6  earthIlu"
             />
           </div>
         </div>
